@@ -1,0 +1,151 @@
+<!-- Nav bar -->
+<nav
+  class="nav"
+  [ngClass]="{ active: isNavActive }"
+  [ngStyle]="{
+    background: notHome ? 'black' : isNavActive ? 'white' : 'transparent'
+  }"
+>
+  <div class="container">
+    <h1 class="logo">
+      <a href="#" [ngStyle]="{ color: isNavActive ? 'black' : 'white' }"
+        ><i class="fa-solid fa-moon"></i> Resume Parser</a
+      >
+    </h1>
+    <button
+      class="hamburger"
+      (click)="toggleMenu()"
+      [ngClass]="{ 'bar-active': isMenuActive }"
+    >
+      <div
+        class="bar"
+        [ngStyle]="{ background: isNavActive ? 'black' : 'white' }"
+      ></div>
+      <div
+        class="bar"
+        [ngStyle]="{ background: isNavActive ? 'black' : 'white' }"
+      ></div>
+      <div
+        class="bar"
+        [ngStyle]="{ background: isNavActive ? 'black' : 'white' }"
+      ></div>
+    </button>
+    <ul [ngClass]="{ 'menu-active': isMenuActive }">
+      <li>
+        <a
+          href="#"
+          [ngClass]="{ current: selectedSection === 'Home' }"
+          [ngStyle]="{
+            color: isNavActive && !isMenuActive ? 'black' : 'white'
+          }"
+          (click)="selectSection('Home')"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="#about-us"
+          [ngClass]="{ current: selectedSection === 'About' }"
+          [ngStyle]="{
+            color: isNavActive && !isMenuActive ? 'black' : 'white'
+          }"
+          (click)="selectSection('About')"
+          >About</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="'/search'"
+          [ngClass]="{ current: selectedSection === 'Search' }"
+          [ngStyle]="{
+            color: isNavActive && !isMenuActive ? 'black' : 'white'
+          }"
+          (click)="selectSection('Search')"
+          >Search</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          [ngClass]="{ current: selectedSection === 'Upload' }"
+          [ngStyle]="{
+            color: isNavActive && !isMenuActive ? 'black' : 'white'
+          }"
+          (click)="selectSection('Upload')"
+          >Upload</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          [ngClass]="{ current: selectedSection === 'Contact' }"
+          [ngStyle]="{
+            color: isNavActive && !isMenuActive ? 'black' : 'white'
+          }"
+          (click)="selectSection('Contact')"
+          >Contact</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Home screen Content -->
+<div class="hero" *ngIf="!notHome">
+  <div class="container">
+    <h1>Welcome</h1>
+    <p>
+      Effortless Resume Parsing and Powerful Search: Unlocking Your Talent
+      Treasure
+    </p>
+  </div>
+</div>
+
+<!-- About Us content -->
+<section class="container content" id="about-us" *ngIf="!notHome">
+  <br />
+  <br />
+  <h2>Content one</h2>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi velit error
+    architecto illum, qui quas iste ducimus cum. Cum quam odit eligendi eum
+    minus, nisi facilis in nostrum illo, expedita ea veritatis, excepturi sunt
+    perferendis soluta maxime? Ullam numquam itaque sed fugiat voluptatem vero
+    quaerat dolorum, velit minima excepturi adipisci fugit, eius doloremque
+    incidunt atque earum dolorem nam voluptates praesentium quis quo.
+  </p>
+  <h2>Content one</h2>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi velit error
+    architecto illum, qui quas iste ducimus cum. Cum quam odit eligendi eum
+    minus, nisi facilis in nostrum illo, expedita ea veritatis, excepturi sunt
+    perferendis soluta maxime? Ullam numquam itaque sed fugiat voluptatem vero
+    quaerat dolorum, velit minima excepturi adipisci fugit, eius doloremque
+    incidunt atque earum dolorem nam voluptates praesentium quis quo.
+  </p>
+  <h2>Content one</h2>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi velit error
+    architecto illum, qui quas iste ducimus cum. Cum quam odit eligendi eum
+    minus, nisi facilis in nostrum illo, expedita ea veritatis, excepturi sunt
+    perferendis soluta maxime? Ullam numquam itaque sed fugiat voluptatem vero
+    quaerat dolorum, velit minima excepturi adipisci fugit, eius doloremque
+    incidunt atque earum dolorem nam voluptates praesentium quis quo.
+  </p>
+  <h2>Content one</h2>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi velit error
+    architecto illum, qui quas iste ducimus cum. Cum quam odit eligendi eum
+    minus, nisi facilis in nostrum illo, expedita ea veritatis, excepturi sunt
+    perferendis soluta maxime? Ullam numquam itaque sed fugiat voluptatem vero
+    quaerat dolorum, velit minima excepturi adipisci fugit, eius doloremque
+    incidunt atque earum dolorem nam voluptates praesentium quis quo.
+  </p>
+</section>
+<section
+  *ngIf="notHome"
+  class="container content"
+  style="position: absolute; top: 7rem"
+>
+  <router-outlet></router-outlet>
+</section>
