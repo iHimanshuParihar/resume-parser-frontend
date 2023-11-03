@@ -66,7 +66,7 @@
       </li>
       <li>
         <a
-          href="#"
+          [routerLink]="'/upload'"
           [ngClass]="{ current: selectedSection === 'Upload' }"
           [ngStyle]="{
             color: isNavActive && !isMenuActive ? 'black' : 'white'
@@ -77,7 +77,7 @@
       </li>
       <li>
         <a
-          href="#"
+          [routerLink]="'/contact'"
           [ngClass]="{ current: selectedSection === 'Contact' }"
           [ngStyle]="{
             color: isNavActive && !isMenuActive ? 'black' : 'white'
