@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.notHome = true;
     }
+    this.isMenuActive = false;
   }
 
   // The below 2 function are for closing the hamburger menu which was opened when screen resolution was leas than 780px and was not closed
