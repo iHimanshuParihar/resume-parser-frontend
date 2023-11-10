@@ -6,10 +6,10 @@ import { UploadComponent } from "./components/upload/upload.component";
 import { HomeComponent } from "./components/home/home.component";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "contact", component: ContactComponent },
-  { path: "upload", component: UploadComponent },
+  { path: "home", component: HomeComponent },
   { path: "search", component: SearchComponent },
+  { path: "upload", component: UploadComponent },
+  { path: "contact", component: ContactComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

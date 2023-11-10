@@ -13,7 +13,17 @@ export class HomeComponent implements OnInit {
   selectedSection: string = "Home";
 
   //ngOnnit is used if we want to call any function when this page reloads or is rendered for first time.
-  ngOnInit() {}
+  ngOnInit() {
+    const notHomeString = sessionStorage.getItem("notHome");
+    if (notHomeString) {
+      this.notHome = JSON.parse(notHomeString);
+    }
+    const selectedTab = sessionStorage.getItem("selectedTab");
+    if (selectedTab) {
+      this.selectedSection = selectedTab;
+    }
+    console.log(this.selectedSection);
+  }
 
   constructor() {} //used for importing services / intializations etc.
 
@@ -23,8 +33,12 @@ export class HomeComponent implements OnInit {
   onScroll() {
     if (window.scrollY > 150) {
       this.isNavActive = true;
+      sessionStorage.setItem("selectedTab", "About");
+      this.selectedSection = "About";
     } else {
       this.isNavActive = false;
+      sessionStorage.setItem("selectedTab", "Home");
+      this.selectedSection = "Home";
     }
   }
 
@@ -41,6 +55,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.notHome = true;
     }
+    sessionStorage.setItem("notHome", JSON.stringify(this.notHome));
+    sessionStorage.setItem("selectedTab", section);
     this.isMenuActive = false;
   }
 
