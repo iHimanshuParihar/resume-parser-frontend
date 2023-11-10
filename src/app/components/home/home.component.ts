@@ -37,8 +37,10 @@ export class HomeComponent implements OnInit {
       this.selectedSection = "About";
     } else {
       this.isNavActive = false;
-      sessionStorage.setItem("selectedTab", "Home");
-      this.selectedSection = "Home";
+      if (!this.notHome) {
+        sessionStorage.setItem("selectedTab", "Home");
+        this.selectedSection = "Home";
+      }
     }
   }
 
