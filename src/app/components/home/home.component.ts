@@ -33,8 +33,10 @@ export class HomeComponent implements OnInit {
   onScroll() {
     if (window.scrollY > 150) {
       this.isNavActive = true;
-      sessionStorage.setItem("selectedTab", "About");
-      this.selectedSection = "About";
+      if (!this.notHome) {
+        sessionStorage.setItem("selectedTab", "About");
+        this.selectedSection = "About";
+      }
     } else {
       this.isNavActive = false;
       if (!this.notHome) {

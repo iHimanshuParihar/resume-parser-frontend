@@ -2,14 +2,14 @@
 <div class="d-flex flex-column">
   <nav
     class="nav"
-    [ngClass]="{ active: isNavActive }"
+    [ngClass]="{ active: isNavActive && !notHome }"
     [ngStyle]="{
       background: notHome ? 'black' : isNavActive ? 'white' : 'transparent'
     }"
   >
     <div class="container">
       <h1 class="logo">
-        <a [ngStyle]="{ color: isNavActive ? 'black' : 'white' }"
+        <a [ngStyle]="{ color: isNavActive && !notHome ? 'black' : 'white' }"
           ><i class="fa-solid fa-moon"></i> Resume Parser</a
         >
       </h1>
@@ -37,7 +37,8 @@
             href="#"
             [ngClass]="{ current: selectedSection === 'Home' }"
             [ngStyle]="{
-              color: isNavActive && !isMenuActive ? 'black' : 'white'
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
             }"
             (click)="selectSection('Home')"
             >Home</a
@@ -48,7 +49,8 @@
             href="#about-us"
             [ngClass]="{ current: selectedSection === 'About' }"
             [ngStyle]="{
-              color: isNavActive && !isMenuActive ? 'black' : 'white'
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
             }"
             (click)="selectSection('About')"
             >About</a
@@ -59,7 +61,8 @@
             [routerLink]="'/search'"
             [ngClass]="{ current: selectedSection === 'Search' }"
             [ngStyle]="{
-              color: isNavActive && !isMenuActive ? 'black' : 'white'
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
             }"
             (click)="selectSection('Search')"
             >Search</a
@@ -70,7 +73,8 @@
             [routerLink]="'/upload'"
             [ngClass]="{ current: selectedSection === 'Upload' }"
             [ngStyle]="{
-              color: isNavActive && !isMenuActive ? 'black' : 'white'
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
             }"
             (click)="selectSection('Upload')"
             >Upload</a
@@ -81,7 +85,8 @@
             [routerLink]="'/contact'"
             [ngClass]="{ current: selectedSection === 'Contact' }"
             [ngStyle]="{
-              color: isNavActive && !isMenuActive ? 'black' : 'white'
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
             }"
             (click)="selectSection('Contact')"
             >Contact</a

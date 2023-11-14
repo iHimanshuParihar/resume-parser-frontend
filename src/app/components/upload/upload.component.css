@@ -1,0 +1,211 @@
+.card-container-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  width: 350px;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  backdrop-filter: blur(0px);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 0px rgba(213, 213, 213, 0.5),
+    inset 0px 0px 15px 0px rgba(213, 213, 213, 0.6),
+    inset 0px 0px 15px 0px rgb(255, 255, 255);
+}
+.box1 {
+  margin-top: 10px;
+  font-size: 20px !important;
+  font-family: monospace;
+}
+
+.content {
+  margin: 15px 2px;
+}
+
+.image img {
+  height: auto;
+  width: 120px;
+  border-radius: 50%;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+}
+
+.name {
+  font-size: 1.25em;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.job_title {
+  font-size: 0.65em;
+  font-weight: bolder;
+  color: gray;
+  margin-top: -2px;
+}
+
+button {
+  width: 130px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+
+.button {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.button .message {
+  background: #fff;
+  border: 2px solid #000;
+}
+
+.button .connect {
+  background-color: #be0000;
+  color: #ededed;
+  border: none;
+  border: 2px solid black;
+}
+button.connect:hover {
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+button.message:hover {
+  letter-spacing: 1px;
+  transition: 0.5s;
+  background: rgba(88, 164, 151, 0.5);
+}
+
+.skills-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.skill {
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border-radius: 10px;
+  padding: 0 10px;
+  height: fit-content;
+  width: 4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 480px) {
+  .box {
+    width: 100vw;
+    border-radius: 0px;
+  }
+  .button {
+    display: flex;
+    flex-direction: column;
+  }
+  .button button {
+    width: 250px;
+  }
+  button.connect {
+    margin-top: 10px;
+  }
+  .content2 {
+    padding: 0px 20px;
+  }
+  .content2 img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.refresh-btn {
+  position: absolute;
+  right: -2rem;
+  background: black;
+  padding: 2px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+/* cross button */
+.cross {
+  position: relative;
+  width: 2.7rem;
+  border: none;
+  left: 10px;
+  background: #000;
+  transition: background 0.5s;
+}
+
+.close {
+  position: absolute;
+  display: flex;
+  padding: 0.8rem 1.5rem;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  top: -70%;
+  left: 50%;
+  width: 3em;
+  height: 1.7em;
+  font-size: 12px;
+  background-color: rgb(19, 22, 24);
+  color: rgb(187, 229, 236);
+  border: none;
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cross:hover {
+  background-color: rgb(211, 21, 21);
+}
+
+.cross:active {
+  background-color: rgb(130, 0, 0);
+}
+
+.cross:hover > .close {
+  animation: close 0.2s forwards 0.25s;
+}
+
+@keyframes close {
+  100% {
+    opacity: 1;
+  }
+}
+
+::ng-deep .swal2-icon {
+  font-size: 8px;
+}
+::ng-deep .swal2-popup {
+  width: 20rem;
+}
+
+::ng-deep .swal2-title {
+  font-size: 15px;
+}
+
+::ng-deep .swal2-confirm {
+  background-color: #b50606 !important;
+  font-size: 14px !important;
+}
+::ng-deep .swal2-cancel {
+  background-color: #000 !important;
+  font-size: 14px !important;
+}
