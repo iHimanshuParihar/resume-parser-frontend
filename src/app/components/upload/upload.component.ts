@@ -10,12 +10,15 @@ import Swal from "sweetalert2";
 export class UploadComponent implements OnInit {
   selectedFile: any;
   isDragging: boolean = false;
+  loadingData: boolean = false;
   isUpload: boolean = false;
   fileName: any;
   resumes: any = [];
   constructor(private resumeService: ResumeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllResumes();
+  }
 
   handleFileChange(event: any) {
     const files = event.target.files;
@@ -35,11 +38,12 @@ export class UploadComponent implements OnInit {
 
   uploadFile() {
     if (this.selectedFile) {
-      console.log(this.selectedFile);
+      this.loadingData = true;
       this.resumeService
         .uploadResume(this.selectedFile)
         .subscribe((res: any) => {
           if (res.code === 0) {
+            this.loadingData = false;
             Swal.fire({
               position: "center",
               icon: "success",
@@ -49,6 +53,7 @@ export class UploadComponent implements OnInit {
             });
           }
           this.clearInput();
+          this.getAllResumes();
         });
     } else {
       Swal.fire({
@@ -71,40 +76,55 @@ export class UploadComponent implements OnInit {
   getAllResumes() {
     this.resumeService.getAllResumes().subscribe((res: any) => {
       if (res.code === 0) {
-        this.resumes = res.result.map((resume: any) => {
+        this.resumes = res.result.map((v: any) => {
           const randomImageNumber = this.getRandomNumber();
           const imagePath = `../../../assets/${randomImageNumber}.png`;
-          return { ...resume, imagePath };
+          return { ...v, imagePath };
         });
       }
     });
   }
 
+  getFullResumePath(relativePath: string): string {
+    const basePath = "http://localhost:3000";
+    return `${basePath}/${relativePath}`;
+  }
   getRandomNumber() {
     return Math.floor(Math.random() * 8) + 1;
   }
 
   deleteResume(resumeId: any, path: any) {
-    const data = {
-      resumeId: resumeId,
-      path: path,
-    };
-    this.resumeService.deleteResume(data).subscribe((res) => {
-      if (res.code === 0) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Resume Deleted Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Something went wrong! please try again.",
-          showConfirmButton: false,
-          timer: 1500,
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data = {
+          resumeId: resumeId,
+          filePath: path,
+        };
+        console.log(data);
+        this.resumeService.deleteResume(data).subscribe((res) => {
+          if (res.code === 0) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Resume Deleted Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } else {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Something went wrong! please try again.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          this.getAllResumes();
         });
       }
     });

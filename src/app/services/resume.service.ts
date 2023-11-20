@@ -28,7 +28,11 @@ export class ResumeService {
     return this.http.post(`${this.apiUrl}/search`, query);
   }
 
-  deleteResume(resumeId: any): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete`, { params: { resumeId } });
+  deleteResume(data: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete`, { body: data });
+  }
+
+  sendEmail(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/contact`, data);
   }
 }

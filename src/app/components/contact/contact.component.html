@@ -1,6 +1,6 @@
 <div class="contact-container">
   <div class="notepad">
-    <div class="top"></div>
+    <div class="top">Contact Us.</div>
     <div class="paper">
       Dear Random Person ,<br /><br />
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I am
@@ -28,14 +28,22 @@
         tabindex="1"
         contenteditable
       ></span
-      >. <br /><br />Please feel free to respond at your earliest
-      convenience.<br />
+      >.<br /><br />Please feel free to respond at your earliest convenience.<br />
       Thank you for your time and consideration!<br /><br /><br />
       <div class="d-flex justify-content-end">
         <button type="submit" class="send-btn" (click)="send()" tabindex="4">
-          Send message &#187;
+          Send Letter &#187;
         </button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="loder_overlay" *ngIf="isSending">
+  <div class="newtons-cradle">
+    <div class="newtons-cradle__dot"></div>
+    <div class="newtons-cradle__dot"></div>
+    <div class="newtons-cradle__dot"></div>
+    <div class="newtons-cradle__dot"></div>
   </div>
 </div>

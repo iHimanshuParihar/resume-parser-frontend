@@ -34,7 +34,11 @@ export class SearchComponent implements OnInit {
       };
       this.resumeService.searchResumes(data).subscribe((res) => {
         if (res.code === 0) {
-          this.resumes = res.result;
+          this.resumes = res.result.map((v: any) => {
+            const randomImageNumber = this.getRandomNumber();
+            const imagePath = `../../../assets/${randomImageNumber}.png`;
+            return { ...v, imagePath };
+          });
           this.loadingData = false;
         }
       });
@@ -76,5 +80,23 @@ export class SearchComponent implements OnInit {
         this.experienceFilter = "0";
       }
     }
+  }
+
+  getRandomNumber() {
+    return Math.floor(Math.random() * 8) + 1;
+  }
+
+  getFullResumePath(relativePath: string): string {
+    const basePath = "http://localhost:3000";
+    return `${basePath}/${relativePath}`;
+  }
+
+  openContact(email: any, phone: any) {
+    Swal.fire({
+      position: "center",
+      title: `Contact Info : \n\n Email: ${email}\n\nPhone: ${phone}`,
+      showConfirmButton: true,
+      confirmButtonText: "Close",
+    });
   }
 }

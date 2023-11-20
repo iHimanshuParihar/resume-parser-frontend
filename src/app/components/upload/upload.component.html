@@ -34,6 +34,7 @@
 </div>
 <hr />
 <div class="card-container-main">
+  <div *ngIf="resumes.length === 0">No resumes uploaded!</div>
   <div class="box1 box" *ngFor="let resume of resumes">
     <div class="content">
       <div class="image">
@@ -41,8 +42,15 @@
       </div>
       <div class="text">
         <p class="name">{{ resume.name }}</p>
-        <p class="job_title">{{ resume.job_matched }}</p>
-        <div class="skills-container">
+        <p class="job_title" placement="top" [ngbTooltip]="resume.job_matched">
+          {{ resume.job_matched | slice : 0 : 2 }}
+        </p>
+        <div
+          class="skills-container"
+          placement="top"
+          [ngbTooltip]="resume.skills"
+        >
+          Skills:
           <div
             class="skill"
             *ngFor="let skill of resume.skills | slice : 0 : 3"
@@ -55,14 +63,20 @@
       <div class="button">
         <div>
           <button class="message" type="button">
-            <a [href]="resume.path"> Resume</a>
+            <a
+              style="color: black; text-decoration: none"
+              [href]="getFullResumePath(resume.filePath)"
+              target="_blank"
+            >
+              Resume</a
+            >
           </button>
         </div>
         <div>
           <button
             class="connect"
             type="button"
-            (click)="deleteResume(resume.resumeId, resume.path)"
+            (click)="deleteResume(resume.resumeId, resume.filePath)"
           >
             Delete
           </button>
@@ -70,4 +84,17 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- loader -->
+<div class="loder_overlay" *ngIf="loadingData">
+  <div class="book">
+    <div class="book__pg-shadow"></div>
+    <div class="book__pg"></div>
+    <div class="book__pg book__pg--2"></div>
+    <div class="book__pg book__pg--3"></div>
+    <div class="book__pg book__pg--4"></div>
+    <div class="book__pg book__pg--5"></div>
+  </div>
+  <div class="loader-text">Analyzing Resume...</div>
 </div>

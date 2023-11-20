@@ -41,7 +41,8 @@
 .box {
   width: 350px;
   height: -moz-fit-content;
-  height: fit-content;
+  min-height: 24rem;
+  max-height: 24rem;
   border-radius: 20px;
   padding: 10px;
   text-align: center;
@@ -63,8 +64,8 @@
 }
 
 .image img {
-  height: auto;
-  width: 120px;
+  height: 7rem;
+  width: 7.5rem;
   border-radius: 50%;
 
   display: block;
