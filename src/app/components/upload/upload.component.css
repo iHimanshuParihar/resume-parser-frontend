@@ -4,21 +4,20 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 }
 .box {
   width: 350px;
   /* height: -moz-fit-content; */
   min-height: 24rem;
   max-height: 24rem;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px;
   text-align: center;
   backdrop-filter: blur(0px);
   background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px 0px rgba(213, 213, 213, 0.5),
-    inset 0px 0px 15px 0px rgba(213, 213, 213, 0.6),
-    inset 0px 0px 15px 0px rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 .box1 {
   margin-top: 10px;
@@ -57,7 +56,7 @@
 button {
   width: 130px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-weight: bolder;
 }
 
@@ -100,7 +99,7 @@ button.message:hover {
 .skill {
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
     rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 0 10px;
   height: fit-content;
   width: 4rem;
@@ -135,9 +134,9 @@ button.message:hover {
 
 .refresh-btn {
   position: absolute;
-  right: -2rem;
+  right: -3rem;
   background: black;
-  padding: 2px 10px;
+  padding: 10px 10px;
   border-radius: 5px;
   color: white;
   cursor: pointer;
@@ -149,7 +148,8 @@ button.message:hover {
   width: 2.7rem;
   border: none;
   left: 10px;
-  background: #000;
+  background: #fff;
+  border: #000 solid 1px;
   transition: background 0.5s;
 }
 

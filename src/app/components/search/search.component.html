@@ -4,20 +4,21 @@
     style="margin: 4rem 0"
   >
     <div class="form">
-      <i class="fa fa-search"></i>
+      <img
+        src="assets/filter.png"
+        style="z-index: 1; width: 20px; cursor: pointer"
+        (click)="openFilterModal()"
+      />
       <input
         type="text"
         class="form-control form-input"
-        placeholder="Search Designation"
+        placeholder="Search Designation and Enter"
         [(ngModel)]="searchedData"
         (keyup.enter)="search()"
       />
-      <span class="left-pan" (click)="openFilterModal()"
-        ><i class="fa fa-filter"></i
-      ></span>
-      <span *ngIf="isSearched" class="refresh-btn" (click)="refresh()"
-        ><i class="fa fa-refresh"></i
-      ></span>
+      <span *ngIf="isSearched" class="refresh-btn" (click)="refresh()">
+        <img src="assets/refresh.png" style="z-index: 1; width: 40px"
+      /></span>
     </div>
   </div>
   <div>Minimum Experience : {{ experienceFilter }} +</div>
