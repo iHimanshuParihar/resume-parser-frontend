@@ -1,0 +1,95 @@
+<div class="d-flex align-items-center flex-column">
+  <div
+    class="d-flex w-100 h-50 justify-content-center align-items-center"
+    style="margin: 4rem 0"
+  >
+    <div class="form">
+      <img
+        src="assets/filter.png"
+        style="z-index: 1; width: 20px; cursor: pointer"
+        (click)="openFilterModal()"
+      />
+      <input
+        type="text"
+        class="form-control form-input"
+        placeholder="Search Designation and Enter"
+        [(ngModel)]="searchedData"
+        (keyup.enter)="search()"
+      />
+      <span *ngIf="isSearched" class="refresh-btn" (click)="refresh()">
+        <img src="assets/refresh.png" style="z-index: 1; width: 40px"
+      /></span>
+    </div>
+  </div>
+  <div>Minimum Experience : {{ experienceFilter }} +</div>
+</div>
+<!-- card container -->
+<div class="card-container-main" *ngIf="isSearched">
+  <div *ngIf="resumes.length === 0">No resumes Found!</div>
+
+  <div class="box1 box" *ngFor="let resume of resumes">
+    <div class="content">
+      <div class="image">
+        <img [src]="resume.imagePath" alt="Profile Image" />
+      </div>
+      <div class="text">
+        <p class="name">{{ resume.name }}</p>
+        <p class="job_title" placement="top" [ngbTooltip]="resume.job_matched">
+          {{ resume.job_matched | slice : 0 : 2 }}
+        </p>
+        <div
+          class="skills-container"
+          placement="top"
+          [ngbTooltip]="resume.skills"
+        >
+          Skills:
+          <div
+            class="skill"
+            *ngFor="let skill of resume.skills | slice : 0 : 3"
+          >
+            {{ skill }}
+          </div>
+        </div>
+        <div style="font-size: 10px; margin: 1rem 0">
+          Experience : {{ resume.no_of_experience }}
+        </div>
+      </div>
+
+      <div class="button">
+        <div>
+          <button class="message" type="button">
+            <a
+              style="color: black; text-decoration: none"
+              [href]="getFullResumePath(resume.filePath)"
+              target="_blank"
+            >
+              Resume</a
+            >
+          </button>
+        </div>
+        <div>
+          <button
+            class="connect"
+            type="button"
+            (click)="openContact(resume.email, resume.phone)"
+          >
+            Contact
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- loader -->
+<div class="loder_overlay" *ngIf="loadingData">
+  <div class="book">
+    <div class="book__pg-shadow"></div>
+    <div class="book__pg"></div>
+    <div class="book__pg book__pg--2"></div>
+    <div class="book__pg book__pg--3"></div>
+    <div class="book__pg book__pg--4"></div>
+    <div class="book__pg book__pg--5"></div>
+  </div>
+  <div class="loader-text">Finding the best...</div>
+</div>

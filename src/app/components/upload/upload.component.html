@@ -1,0 +1,100 @@
+<div
+  class="d-flex justify-content-center align-items-center w-100 h-100 flex-column p-4"
+>
+  <label class="form-label" for="customFile">File Supported : PDF</label>
+  <div class="d-flex w-100">
+    <input
+      type="file"
+      class="form-control"
+      id="customFile"
+      (change)="handleFileChange($event)"
+    />
+    <button class="cross" (click)="clearInput()">
+      <img src="assets/cross.png" style="z-index: 1; width: 20px" />
+      <div class="close">Close</div>
+    </button>
+  </div>
+</div>
+<div class="w-100 d-flex justify-content-center mb-4">
+  <button class="message" type="button" (click)="uploadFile()">Upload</button>
+</div>
+
+<hr />
+<label class="form-label w-100 text-center">Uploaded Resumes By You.</label>
+
+<div
+  class="form-label w-100 text-center"
+  style="margin: 1rem 0; color: lightgray"
+>
+  <small
+    >Note : These are the resumes uploaded by you.You can only upload 15
+    resumes.If you want to add new resume delete the previous uploaded
+    resume</small
+  >
+</div>
+<hr />
+<div class="card-container-main">
+  <div *ngIf="resumes.length === 0">No resumes uploaded!</div>
+  <div class="box1 box" *ngFor="let resume of resumes">
+    <div class="content">
+      <div class="image">
+        <img [src]="resume.imagePath" alt="Profile Image" />
+      </div>
+      <div class="text">
+        <p class="name">{{ resume.name }}</p>
+        <p class="job_title" placement="top" [ngbTooltip]="resume.job_matched">
+          {{ resume.job_matched | slice : 0 : 2 }}
+        </p>
+        <div
+          class="skills-container"
+          placement="top"
+          [ngbTooltip]="resume.skills"
+        >
+          Skills:
+          <div
+            class="skill"
+            *ngFor="let skill of resume.skills | slice : 0 : 3"
+          >
+            {{ skill }}
+          </div>
+        </div>
+      </div>
+
+      <div class="button">
+        <div>
+          <button class="message" type="button">
+            <a
+              style="color: black; text-decoration: none"
+              [href]="getFullResumePath(resume.filePath)"
+              target="_blank"
+            >
+              Resume</a
+            >
+          </button>
+        </div>
+        <div>
+          <button
+            class="connect"
+            type="button"
+            (click)="deleteResume(resume.resumeId, resume.filePath)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- loader -->
+<div class="loder_overlay" *ngIf="loadingData">
+  <div class="book">
+    <div class="book__pg-shadow"></div>
+    <div class="book__pg"></div>
+    <div class="book__pg book__pg--2"></div>
+    <div class="book__pg book__pg--3"></div>
+    <div class="book__pg book__pg--4"></div>
+    <div class="book__pg book__pg--5"></div>
+  </div>
+  <div class="loader-text">Analyzing Resume...</div>
+</div>

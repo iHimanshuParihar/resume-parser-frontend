@@ -1,0 +1,192 @@
+<!-- Nav bar -->
+<div class="d-flex flex-column">
+  <nav
+    class="nav"
+    [ngClass]="{ active: isNavActive && !notHome }"
+    [ngStyle]="{
+      background: notHome ? 'black' : isNavActive ? 'white' : 'transparent'
+    }"
+  >
+    <div class="container">
+      <h1 class="logo">
+        <a [ngStyle]="{ color: isNavActive && !notHome ? 'black' : 'white' }"
+          ><i class="fa-solid fa-moon"></i> Resume Parser</a
+        >
+      </h1>
+      <button
+        class="hamburger"
+        (click)="toggleMenu()"
+        [ngClass]="{ 'bar-active': isMenuActive }"
+      >
+        <div
+          class="bar"
+          [ngStyle]="{ background: isNavActive ? 'black' : 'white' }"
+        ></div>
+        <div
+          class="bar"
+          [ngStyle]="{ background: isNavActive ? 'black' : 'white' }"
+        ></div>
+        <div
+          class="bar"
+          [ngStyle]="{ background: isNavActive ? 'black' : 'white' }"
+        ></div>
+      </button>
+      <ul [ngClass]="{ 'menu-active': isMenuActive }">
+        <li>
+          <a
+            href="#"
+            [ngClass]="{ current: selectedSection === 'Home' }"
+            [ngStyle]="{
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
+            }"
+            (click)="selectSection('Home')"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="#about-us"
+            [ngClass]="{ current: selectedSection === 'About' }"
+            [ngStyle]="{
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
+            }"
+            (click)="selectSection('About')"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="'/search'"
+            [ngClass]="{ current: selectedSection === 'Search' }"
+            [ngStyle]="{
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
+            }"
+            (click)="selectSection('Search')"
+            >Search</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="'/upload'"
+            [ngClass]="{ current: selectedSection === 'Upload' }"
+            [ngStyle]="{
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
+            }"
+            (click)="selectSection('Upload')"
+            >Upload</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="'/contact'"
+            [ngClass]="{ current: selectedSection === 'Contact' }"
+            [ngStyle]="{
+              color:
+                isNavActive && !isMenuActive && !notHome ? 'black' : 'white'
+            }"
+            (click)="selectSection('Contact')"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home screen Content -->
+  <div class="hero" *ngIf="!notHome">
+    <div class="container">
+      <h1>Welcome</h1>
+      <p>
+        Effortless Resume Parsing and Powerful Search: Unlocking Your Talent
+        Treasure
+      </p>
+    </div>
+  </div>
+
+  <!-- About Us content -->
+  <section class="container content" id="about-us" *ngIf="!notHome">
+    <br />
+    <br />
+    <br />
+    <br />
+    <h2>Resume Analysis and Management</h2>
+    <p>
+      Welcome to our platform, where we simplify the process of managing and
+      optimizing your resumes. Our service is designed to make the job
+      application process more efficient and effective.
+    </p>
+    <br />
+
+    <h3>Upload Section</h3>
+    <p>
+      In the "Uploads" section, users have the convenience of uploading up to 10
+      resumes one by one. The process is straightforward and user-friendly. Our
+      platform supports various document formats, but for optimal results, we
+      recommend uploading resumes in PDF format.
+    </p>
+    <br />
+
+    <h3>Resume Analysis</h3>
+    <p>
+      Once a user uploads a resume in PDF format, our system automatically
+      analyzes the data and identifies the most suitable designation based on
+      the content. This automated analysis helps users categorize and organize
+      their resumes efficiently.
+    </p>
+    <br />
+
+    <h3>Search Section</h3>
+    <p>
+      In the "Search" section, users can search for the best resume for a
+      specific designation. The system allows users to filter results based on
+      years of experience, enabling a more refined search. This feature is
+      invaluable for employers and job seekers alike, providing a streamlined
+      way to find the most relevant resumes.
+    </p>
+    <br />
+
+    <h3>Resume Management</h3>
+    <p>
+      Our platform also offers a comprehensive resume management system. In the
+      "Uploads" section, users can view the resumes they've uploaded.
+      Additionally, they have the flexibility to delete resumes directly from
+      this section, providing full control over their uploaded content.
+    </p>
+    <br />
+
+    <h2>Key Features:</h2>
+    <ul>
+      <li>
+        Effortless Uploads: Upload up to 10 resumes seamlessly, one by one.
+      </li>
+      <li>
+        Automated Analysis: Our system automatically analyzes PDF resumes to
+        find suitable designations.
+      </li>
+      <li>
+        Advanced Search: Search for the best resumes based on designations and
+        filter by years of experience.
+      </li>
+      <li>
+        Resume Management: View and delete uploaded resumes for enhanced control
+        and organization.
+      </li>
+    </ul>
+
+    <p>
+      Our platform is dedicated to making the resume management process
+      efficient, allowing users to focus on what matters most: finding the right
+      opportunities and candidates.
+    </p>
+  </section>
+  <section
+    *ngIf="notHome"
+    style="margin-top: 6.25rem; height: 100%; overflow-y: auto"
+  >
+    <router-outlet></router-outlet>
+  </section>
+</div>

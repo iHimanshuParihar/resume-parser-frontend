@@ -1,0 +1,49 @@
+<div class="contact-container">
+  <div class="notepad">
+    <div class="top">Contact Us.</div>
+    <div class="paper">
+      Dear Random Person ,<br /><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I am
+      <span
+        #nameRef
+        class="form__field field--name"
+        data-placeholder="your name"
+        tabindex="1"
+        contenteditable
+      ></span>
+      i wanted to contact you regarding a query. My email is
+      <span
+        #emailRef
+        class="form__field field--name"
+        data-placeholder="your email"
+        tabindex="1"
+        contenteditable
+      ></span
+      >.<br /><br />
+      My query is
+      <span
+        #queryRef
+        class="form__field field--name"
+        data-placeholder="enter you query here"
+        tabindex="1"
+        contenteditable
+      ></span
+      >.<br /><br />Please feel free to respond at your earliest convenience.<br />
+      Thank you for your time and consideration!<br /><br /><br />
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="send-btn" (click)="send()" tabindex="4">
+          Send Letter &#187;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loder_overlay" *ngIf="isSending">
+  <div class="newtons-cradle">
+    <div class="newtons-cradle__dot"></div>
+    <div class="newtons-cradle__dot"></div>
+    <div class="newtons-cradle__dot"></div>
+    <div class="newtons-cradle__dot"></div>
+  </div>
+</div>
