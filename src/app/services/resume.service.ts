@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 })
 export class ResumeService {
   constructor(private http: HttpClient) {}
-  apiUrl = "http://localhost:3000";
+  apiUrl = "https://resume-parser-uzs7.onrender.com";
 
   uploadResume(file: File): Observable<any> {
     const formData = new FormData();
