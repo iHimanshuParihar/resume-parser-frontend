@@ -1,29 +1,30 @@
 import { Component, OnInit } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ResumeService } from "src/app/services/resume.service";
-import Swal from "sweetalert2";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap"; // Importing NgbModal for modal functionality
+import { ResumeService } from "src/app/services/resume.service"; // Importing ResumeService for searching resumes
+import Swal from "sweetalert2"; // Importing SweetAlert2 for displaying alerts
+
 @Component({
   selector: "app-search",
   templateUrl: "./search.component.html",
   styleUrls: ["./search.component.css"],
 })
 export class SearchComponent implements OnInit {
-  skills: any = ["mongo db", "angular", "javascript"];
-  isSearched: boolean = false;
-  loadingData: boolean = false;
-  searchedData: any;
-  experienceFilter: any = "0";
-  resumes: any = [];
+  isSearched: boolean = false; // Flag to indicate if search has been performed
+  loadingData: boolean = false; // Flag to indicate if data is being loaded
+  searchedData: any; // Holds the searched data
+  experienceFilter: any = "0"; // Holds the experience filter value
+  resumes: any = []; // Array to hold search results
 
   constructor(
-    private resumeService: ResumeService,
-    private modalService: NgbModal
+    private resumeService: ResumeService, // Injecting ResumeService
+    private modalService: NgbModal // Injecting NgbModal service for opening modal
   ) {}
 
   ngOnInit() {
-    // this.search();
+    // Initialize component
   }
 
+  // Function to perform search
   search() {
     if (this.searchedData) {
       this.isSearched = true;
@@ -32,8 +33,10 @@ export class SearchComponent implements OnInit {
         designation: this.searchedData,
         experience: +this.experienceFilter,
       };
+      // Call searchResumes method of ResumeService to search resumes
       this.resumeService.searchResumes(data).subscribe((res) => {
         if (res.code === 0) {
+          // Process search results
           this.resumes = res.result.map((v: any) => {
             const randomImageNumber = this.getRandomNumber();
             const imagePath = `../../../assets/${randomImageNumber}.png`;
@@ -43,6 +46,7 @@ export class SearchComponent implements OnInit {
         }
       });
     } else {
+      // Display error message if search field is empty
       Swal.fire({
         position: "top",
         icon: "error",
@@ -52,15 +56,18 @@ export class SearchComponent implements OnInit {
       });
     }
   }
+
+  // Function to clear search results and search field
   refresh() {
     this.isSearched = false;
     this.resumes = [];
     this.searchedData = "";
   }
 
+  // Function to open filter modal for experience
   async openFilterModal() {
     const result = await Swal.fire({
-      title: "Minimum Experince Required ?",
+      title: "Minimum Experience Required ?",
       input: "range",
       inputLabel: "Years",
       inputAttributes: {
@@ -82,15 +89,18 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  // Function to generate a random number for image selection
   getRandomNumber() {
     return Math.floor(Math.random() * 8) + 1;
   }
 
+  // Function to construct full resume path
   getFullResumePath(relativePath: string): string {
     const basePath = "https://resume-parser-uzs7.onrender.com";
     return `${basePath}/${relativePath}`;
   }
 
+  // Function to open contact modal with email and phone details
   openContact(email: any, phone: any) {
     Swal.fire({
       position: "center",
