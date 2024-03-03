@@ -78,6 +78,7 @@ export class UploadComponent implements OnInit {
     if (fileInput) {
       fileInput.value = "";
     }
+    this.selectedFile = "";
   }
 
   // Function to fetch all uploaded resumes
