@@ -86,7 +86,7 @@ export class UploadComponent implements OnInit {
   }
 
   getFullResumePath(relativePath: string): string {
-    const basePath = "http://localhost:3000";
+    const basePath = "https://resume-parser-uzs7.onrender.com";
     return `${basePath}/${relativePath}`;
   }
   getRandomNumber() {
