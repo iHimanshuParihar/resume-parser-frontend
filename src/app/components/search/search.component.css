@@ -77,6 +77,10 @@
   font-size: 1.25em;
   font-weight: bolder;
   letter-spacing: 1px;
+  width: 20rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .job_title {

@@ -33,7 +33,9 @@
         <img [src]="resume.imagePath" alt="Profile Image" />
       </div>
       <div class="text">
-        <p class="name">{{ resume.name }}</p>
+        <p class="name" placement="top" [ngbTooltip]="resume.name">
+          {{ resume.name }}
+        </p>
         <p class="job_title" placement="top" [ngbTooltip]="resume.job_matched">
           {{ resume.job_matched | slice : 0 : 2 }}
         </p>

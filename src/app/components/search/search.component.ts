@@ -42,8 +42,8 @@ export class SearchComponent implements OnInit {
             const imagePath = `../../../assets/${randomImageNumber}.png`;
             return { ...v, imagePath };
           });
-          this.loadingData = false;
         }
+        this.loadingData = false;
       });
     } else {
       // Display error message if search field is empty
