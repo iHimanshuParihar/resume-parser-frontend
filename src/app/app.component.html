@@ -1,1 +1,9 @@
-<app-home></app-home>
+<div *ngIf="!loggedIn; else showHome">
+  <app-login
+    class="position-relative overflow-hidden"
+    (isLogin)="isLogin($event)"
+  ></app-login>
+</div>
+<ng-template #showHome>
+  <app-home (isLogin)="isLogin($event)" [isLoggedIn]="true"></app-home>
+</ng-template>

@@ -11,6 +11,7 @@ import { SearchComponent } from "./components/search/search.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { LoginComponent } from "./components/login/login.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
     AboutComponent,
     UploadComponent,
     SearchComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

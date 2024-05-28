@@ -1,4 +1,11 @@
-import { Component, HostListener, OnInit } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from "@angular/core";
 
 @Component({
   selector: "app-home",
@@ -6,14 +13,22 @@ import { Component, HostListener, OnInit } from "@angular/core";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
+  @Input() isLoggedIn: boolean = true;
   //Below are the varaible decalred that were used in the below functions.
   isNavActive = false;
   isMenuActive: boolean = false;
   notHome: boolean = false;
   selectedSection: string = "Home";
+  @Output() isLogin = new EventEmitter<boolean>();
 
   //ngOnnit is used if we want to call any function when this page reloads or is rendered for first time.
   ngOnInit() {
+    if (this.isLoggedIn) {
+      this.notHome = false;
+      sessionStorage.setItem("notHome", JSON.stringify(this.notHome));
+      sessionStorage.setItem("selectedTab", this.selectedSection);
+      this.isMenuActive = false;
+    }
     const notHomeString = sessionStorage.getItem("notHome");
     if (notHomeString) {
       this.notHome = JSON.parse(notHomeString);
@@ -22,7 +37,6 @@ export class HomeComponent implements OnInit {
     if (selectedTab) {
       this.selectedSection = selectedTab;
     }
-    console.log(this.selectedSection);
   }
 
   constructor() {} //used for importing services / intializations etc.
@@ -53,6 +67,10 @@ export class HomeComponent implements OnInit {
 
   //Below function is used for  showing which nav item is active
   selectSection(section: string) {
+    if (section === "logout") {
+      localStorage.removeItem("isLogin");
+      this.isLogin.emit(false);
+    }
     this.selectedSection = section;
     if (section === "Home" || section === "About") {
       this.notHome = false;
