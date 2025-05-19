@@ -78,9 +78,7 @@ ng serve
 4. **Filter** - Use the experience slider to filter candidates by years of experience
 5. **Review** - Click on individual results to view detailed candidate information
 
-## 📊 Demo
 
-[View Demo Video]
 
 ## 🚀 Future Enhancements
 
